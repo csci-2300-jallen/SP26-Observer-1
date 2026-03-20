@@ -1,0 +1,50 @@
+{
+  "name": "C++17 OOSD",
+  "image": "mcr.microsoft.com/devcontainers/cpp:0-ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/git:1": {}
+  },
+
+  // Persist ccache across rebuilds
+  "mounts": [
+    "source=ccache,target=/home/vscode/.ccache,type=volume"
+  ],
+
+  // Make sure ccache uses the mounted directory (no ${workspaceFolder} here!)
+  "containerEnv": {
+    "CCACHE_DIR": "/home/vscode/.ccache",
+    "CCACHE_TEMPDIR": "/home/vscode/.ccache/tmp"
+  },
+
+  // Install tools + fix ownership/perms on the mounted volume
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y gdb gdbserver ninja-build ccache && sudo mkdir -p /home/vscode/.ccache/tmp && sudo chown -R vscode:vscode /home/vscode/.ccache && chmod -R u+rwX,g+rwX /home/vscode/.ccache",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "twxs.cmake",
+        "-github.copilot",
+        "-github.copilot-chat"
+      ],
+      "settings": {
+        "cmake.configureOnOpen": true,
+        "cmake.configureOnEdit": true,
+
+        // Make the build folder consistent across machines
+        "cmake.buildDirectory": "${workspaceFolder}/build",
+
+        // Helps ensure Debug builds when students pick Debug variant
+        "cmake.preferredGenerators": ["Ninja", "Unix Makefiles"],
+
+        "editor.inlineSuggest.enabled": false,
+        "editor.suggest.preview": false,
+        "editor.suggestOnTriggerCharacters": true,
+
+        "github.copilot.enabled": false,
+        "github.copilot.inlineSuggest.enable": false
+      }
+    }
+  }
+}

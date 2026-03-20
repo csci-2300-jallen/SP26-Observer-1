@@ -1,0 +1,114 @@
+========================================
+OOSD COMPILING/TESTING/SUBMITTING ASSIGNMENT CHECKLIST
+========================================
+
+Follow these steps IN ORDER. Do not skip steps.
+
+----------------------------------------
+1) OPEN THE PROJECT IN THE DEV CONTAINER
+----------------------------------------
+☐ Ensure that Docker Desktop is open on your machine. Without Docker, nothing will work.
+☐ Open this repository in VS Code
+☐ If prompted, click “Reopen in Container”
+☐ If not prompted:
+    - Press Ctrl/Cmd + Shift + P
+    - Select: Dev Containers: Reopen in Container
+
+☐ Wait for the container to finish building
+☐ Confirm the bottom-left of VS Code says:
+    “Dev Container: …”
+
+If you are NOT in the container, commands WILL FAIL.
+
+----------------------------------------
+2) CONFIGURE AND BUILD THE PROJECT
+----------------------------------------
+
+At the top of VSCode click Terminal -> New Terminal
+
+From the VS Code terminal (inside the container):
+
+☐ Configure the project (run only once):
+    cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug
+
+☐ Build the project (run again after every code change you want to compile/run):
+    cmake --build build
+
+If you see compiler errors, fix them BEFORE continuing.
+
+----------------------------------------
+3) RUN THE PROGRAM (main.cpp)
+----------------------------------------
+
+☐ Run the compiled program as an executable file:
+    ./build/app
+
+☐ Confirm the code runs (ie Hello World is printed during the first assignment, etc)
+
+----------------------------------------
+4) RUN THE TESTS
+----------------------------------------
+
+☐ Run all tests:
+    ctest --test-dir build
+
+☐ Confirm:
+    - 100% tests passed (This may not be the case at first, but before you submit your code, confirm with this)
+    - 0 tests failed
+
+(Optional, more detail)
+☐ Run with verbose output:
+    ctest --test-dir build --output-on-failure
+
+----------------------------------------
+5) MAKE YOUR CHANGES
+----------------------------------------
+
+☐ Edit only the .cpp files specified in the assignment
+
+After changes:
+
+☐ Rebuild:
+    cmake --build build
+
+☐ Re-run tests:
+    ctest --test-dir build
+
+----------------------------------------
+6) COMMIT YOUR WORK
+----------------------------------------
+
+☐ Stage files:
+    git add .
+
+☐ Commit:
+    git commit -m "Complete assignment"
+
+----------------------------------------
+7) PUSH (THIS SUBMITS YOUR WORK)
+----------------------------------------
+
+☐ Push to GitHub:
+    git push
+
+☐ Go to GitHub → Actions tab
+☐ Confirm the autograder ran
+☐ Check for a green checkmark (or review errors)
+
+----------------------------------------
+8) IF SOMETHING DOES NOT WORK, CHECK:
+----------------------------------------
+
+☐ Are you in the Dev Container?
+☐ Did you rebuild after making changes?
+☐ Did you run the tests locally?
+☐ Did you push your latest commit?
+
+----------------------------------------
+SUBMISSION RULE
+----------------------------------------
+
+Your assignment is submitted when you PUSH your code.
+If it is not pushed, it is not submitted.
+
+========================================

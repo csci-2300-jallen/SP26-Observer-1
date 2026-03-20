@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Configure + Build (Debug)",
+      "type": "shell",
+      "command": "test -f build/CTestTestfile.cmake || cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Debug; cmake --build build --parallel",
+      "problemMatcher": ["$gcc"],
+      "group": "build"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  // Never open the Debug Console
+  "debug.internalConsoleOptions": "neverOpen",
+
+  // Keep Terminal focus for cin/cout interaction
+  "terminal.integrated.focusAfterRun": true,
+
+  // Optional cleanup
+  "debug.console.closeOnEnd": true,
+  "editor.unicodeHighlight.nonBasicASCII": false,
+  
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "C_Cpp.intelliSenseEngine": "default",
+  "C_Cpp.default.compileCommands": "${workspaceFolder}/build/compile_commands.json"
+
+
+}
