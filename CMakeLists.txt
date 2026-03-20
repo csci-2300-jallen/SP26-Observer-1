@@ -10,6 +10,7 @@ add_library(student_lib STATIC
     src/Subject.cpp
     src/CoffeePot.cpp
     src/Person.cpp
+    src/BeanListener.cpp
 )
 
 target_include_directories(student_lib PUBLIC
